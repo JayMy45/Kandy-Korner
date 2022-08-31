@@ -31,22 +31,22 @@ export const LocationList = () => {
         []
     )
 
-    return <>{
-
-        <article className="locations">
-            <h2>LIST OF LOCATIONS</h2>
-            {
-                locations.map(
-                    (location) => {
-                        return <section className="location">
-                            <header><strong>Name:</strong> {location.name}</header>
-                            <footer><strong>Address:</strong> {location.address}</footer>
-                        </section>
-                    }
-                )
-            }
-        </article >
-    }
+    return <>
+        {
+            <article className="locations">
+                <h2>LIST OF LOCATIONS</h2>
+                {
+                    locations.map(
+                        (location) => {
+                            return <section className="location">
+                                <header><strong>Name:</strong> {location.name}</header>
+                                <footer><strong>Address:</strong> {location.address}</footer>
+                            </section>
+                        }
+                    )
+                }
+            </article >
+        }
     </>
 }
 
