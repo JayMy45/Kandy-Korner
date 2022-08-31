@@ -17,6 +17,8 @@ export const LocationList = () => {
 
     const [locations, setLocations] = useState([])     // set initial state to empty
 
+
+
     //& LOCATIONS
     useEffect(
         () => {
@@ -26,10 +28,11 @@ export const LocationList = () => {
                     setLocations(locationArray) //setLocation() sets state to locationArray which is storing information from API...
                 })
 
-            console.log("initial status of locations...", locations)
+            // console.log("initial status of locations...", locations)
         },
         []
     )
+    //get products to show when click on products link...
 
     return <>
         {
