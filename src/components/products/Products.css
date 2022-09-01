@@ -1,0 +1,13 @@
+.products {
+    display: flex;
+    flex-direction: column;
+}
+
+.product {
+    background-color: lightgray;
+    border: 2px inset darkgray;
+    padding: 0.7rem;
+    margin: 0.7rem;
+    border-radius: 5px;
+    /* box-shadow: 5px, 10px black; */
+}

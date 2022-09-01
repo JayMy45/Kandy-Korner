@@ -1,0 +1,12 @@
+.locations {
+    display: flex;
+    flex-direction: column;
+}
+
+.location {
+    background-color: lightgray;
+    border: 2px solid darkgray;
+    padding: 0.7rem;
+    margin: 0.7rem;
+    border-radius: 12px;
+}
