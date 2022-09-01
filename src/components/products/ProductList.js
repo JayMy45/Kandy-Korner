@@ -9,10 +9,15 @@ export const ProductList = () => {
 
     const [products, setProducts] = useState([])
 
+    const localKandyUser = localStorage.getItem("kandy_user")
+    const kandyUserObject = JSON.parse(localKandyUser)
+    // console.log(kandyUserObject)
+
+
     //& Fetch -PRODUCTS
     useEffect(
         () => {
-            fetch(`http://localhost:8088/products`)
+            fetch(`http://localhost:8088/products/?_sort=name`)
                 .then(response => response.json())
                 .then((productArray) => {
                     setProducts(productArray)
@@ -30,6 +35,7 @@ export const ProductList = () => {
     )
 
     return <>
+        {<button>Top Priced</button>}
         {
             <article className="products">
                 <h2>LIST OF PRODUCTS</h2>
