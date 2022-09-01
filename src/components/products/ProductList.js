@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import "./Products.css"
 
 
 // const localKandyUser = localStorage.getItem("kandy_user")
@@ -35,9 +36,9 @@ export const ProductList = () => {
                 {
                     products.map(
                         (product) => {
-                            return <section className="location">
+                            return <section className="product">
                                 <header><strong>Name:</strong> {product.name}</header>
-                                <footer><strong>Address:</strong> {product.address}</footer>
+                                <footer><strong>Price:</strong> {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</footer>
                             </section>
                         }
                     )
