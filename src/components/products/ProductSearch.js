@@ -3,7 +3,7 @@
 import "./Products.css"
 
 
-export const ProductSearch = ({ setterFunction, searchTermState }) => {
+export const ProductSearch = ({ setterFunction }) => {
     return (  //has to be parenthesis and not fragment to around input to render on page...
         //create an onChange event that will change the state in this component
         //changeEvent.target.value eventListener that will listen for changes to input field value.
@@ -11,10 +11,10 @@ export const ProductSearch = ({ setterFunction, searchTermState }) => {
 
             <input
                 onChange={
-                    (changeEvent) => { setterFunction(changeEvent.target.value) }
+                    (changeEvent) => { setterFunction(changeEvent.target.value) } //target value is the input field...
                 }
 
-                type="text" placeholder="Enter search terms" className="kandyKorner__search" />
+                type="text" placeholder="What candy are you looking for?" className="kandyKorner__search" />
         </div>
     )
 }

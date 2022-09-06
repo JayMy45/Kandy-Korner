@@ -19,6 +19,6 @@ export const ProductContainer = () => {
         <ProductSearch setterFunction={setSearchTerms} />
         <ProductList searchTermState={searchTerms} />
     </>
-
+    //   ⬆️ productSearch and productList positioning determines how it renders onto page...see above
 
 }
