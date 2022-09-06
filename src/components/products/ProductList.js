@@ -6,7 +6,9 @@ import "./Products.css"
 // const localKandyUser = localStorage.getItem("kandy_user")
 // const kandyUserObject = JSON.parse(localKandyUser)
 
-export const ProductList = () => {
+//searchTermState is a state variable inherited from parent (ProductContainer) as a prop (property).
+
+export const ProductList = ({ searchTermState }) => {
 
     const [products, setProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([])
@@ -17,6 +19,20 @@ export const ProductList = () => {
     const localKandyUser = localStorage.getItem("kandy_user")
     const kandyUserObject = JSON.parse(localKandyUser)
     // console.log(kandyUserObject)
+
+    // *** observe searchTermState changes
+    useEffect(
+        () => {
+            const searchedProducts = products.filter(product => {
+                // the .includes method filters any string matching input field updates.
+                return product.name.toLowerCase().includes(searchTermState.toLowerCase())
+            })
+            setFilteredProducts(searchedProducts)
+        },
+        // console.log(searchTermState)
+        [searchTermState]
+    )
+
 
     //& topPrice setFilteredProducts to filtered amount (less than 3) or to product array if condition met.
     useEffect(
