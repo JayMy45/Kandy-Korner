@@ -41,7 +41,7 @@ export const LocationList = () => {
                 {
                     locations.map(
                         (location) => {
-                            return <section className="location">
+                            return <section className="location" key={`location--${location.id}`}>
                                 <header><strong>Name:</strong> {location.name}</header>
                                 <footer><strong>Address:</strong> {location.address}</footer>
                             </section>
@@ -54,3 +54,5 @@ export const LocationList = () => {
 }
 
 //reroute locations to webpage...?
+
+//added key identifier to locations.map()

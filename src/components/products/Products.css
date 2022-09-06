@@ -11,3 +11,13 @@
     border-radius: 5px;
     /* box-shadow: 5px, 10px black; */
 }
+
+button {
+    margin: 1%;
+    border-radius: 4px;
+}
+
+.button__topPrice:hover,
+.button__create:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
