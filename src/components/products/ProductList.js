@@ -23,6 +23,7 @@ export const ProductList = ({ searchTermState }) => {
     // *** observe searchTermState changes
     useEffect(
         () => {
+
             const searchedProducts = products.filter(product => {
                 // the .includes method filters any string matching input field updates.
                 return product.name.toLowerCase().includes(searchTermState.toLowerCase())

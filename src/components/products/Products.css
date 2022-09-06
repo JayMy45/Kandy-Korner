@@ -23,5 +23,6 @@ button {
 }
 
 .kandyKorner__search {
-    margin: 1rem;
+    margin-top: 1rem;
+    width: 20rem;
 }
