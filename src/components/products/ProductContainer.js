@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { CustomerLists } from "./CustomerList"
 import { ProductList } from "./ProductList"
 import { ProductSearch } from "./ProductSearch"
 
@@ -17,7 +18,7 @@ export const ProductContainer = () => {
     //^ will return two child components (removed from applicationViews while ProductContainer is routed through applicationViews)
     return <>
         <ProductSearch setterFunction={setSearchTerms} />
-        <ProductList searchTermState={searchTerms} />
+        <CustomerLists searchTermState={searchTerms} />
     </>
     //   ⬆️ productSearch and productList positioning determines how it renders onto page...see above
 

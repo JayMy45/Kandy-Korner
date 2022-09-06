@@ -1,9 +1,7 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { LocationList } from "../locations/LocationList"
 import { ProductContainer } from "../products/ProductContainer"
-import { ProductForm } from "../products/ProductForm"
-import { ProductList } from "../products/ProductList"
-import { ProductSearch } from "../products/ProductSearch"
+
 
 
 export const CustomerViews = () => {
@@ -27,7 +25,7 @@ export const CustomerViews = () => {
                     //productSearch and productList positioning determines how it renders onto page...see above
                 } />
 
-                <Route path="products/create" element={<ProductForm />} />
+
 
 
             </Route>
@@ -35,3 +33,6 @@ export const CustomerViews = () => {
     )
 
 }
+
+//     <Route path="products/create" element={<ProductForm />} />  ***REMOVED BECAUSE CUSTOMER WONT BE CREATING NEW CANDIES***
+// if this route had remained as a route the customers would be able to manually type in route and access create page
