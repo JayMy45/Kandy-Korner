@@ -1,8 +1,8 @@
 import { Outlet, Route, Routes } from "react-router-dom"
 import { LocationList } from "../locations/LocationList"
+import { ProductContainer } from "../products/ProductContainer"
 import { ProductForm } from "../products/ProductForm"
-import { ProductList } from "../products/ProductList"
-import { ProductSearch } from "../products/ProductSearch"
+
 
 
 export const ApplicationViews = () => {
@@ -21,8 +21,7 @@ export const ApplicationViews = () => {
 
 				<Route path="products" element={
 					<>
-						<ProductSearch />
-						<ProductList />
+						<ProductContainer />
 					</>
 					//productSearch and productList positioning determines how it renders onto page...see above
 				} />
