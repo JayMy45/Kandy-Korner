@@ -38,7 +38,7 @@ export const ProductForm = () => {
         []
     )
 
-    // ! NAVIGATION...
+    // ! NAVIGATION...(used in to redirect after posting contents to database)
     const navigate = useNavigate()
 
 
@@ -96,7 +96,7 @@ export const ProductForm = () => {
                 <div><h3>Choose a type: </h3></div>
                 {productType.map(
                     (prodType) => {
-                        return <div className="form-group" key={`prodType--${prodType.productTypeId}`}>
+                        return <div className="form-group" key={`prodType--${prodType.id}`}>
                             <input type="radio" name="productType" value={prodType.id} onChange={ //use value with radio buttons to target and send information to update useState()
                                 (evt) => {
                                     const copy = { ...product }
