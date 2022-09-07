@@ -1,0 +1,14 @@
+.employees {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.employee {
+    border: 5px Solid black;
+    margin: 1rem;
+    padding: .5rem;
+    background-color: lightgray;
+    border-radius: 10px;
+    width: 50%;
+}

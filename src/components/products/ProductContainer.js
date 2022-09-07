@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { CustomerLists } from "./CustomerList"
-import { ProductList } from "./ProductList"
 import { ProductSearch } from "./ProductSearch"
 
 
