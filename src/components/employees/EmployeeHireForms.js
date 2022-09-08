@@ -19,7 +19,7 @@ export const EmployeeHireForms = () => {
       -----
 
 This is how the data is stored on the server there fore the post will need to output the same information
-
+* need the updated id from User database structure POST'd first before Employee POST can have an updated userID
          ~ Database Structure (User)
 ?                   id: 1, (will be updated by JSON.server no need to include in final output)
                     fullName: "string",
@@ -33,13 +33,13 @@ This is how the data is stored on the server there fore the post will need to ou
                     "rate": integer,
                     "userId": integer,
                     "locationId": integer
-                    
+
       
-            *final output
-        "name":     string,
-        location:   integer (foreign key),
-        start date: date,
-        payRate:    integer
+                        *final output
+                    "name":     string,
+                    location:   integer (foreign key),
+                    start date: date,
+                    payRate:    integer
 
   */
 
@@ -173,7 +173,7 @@ This is how the data is stored on the server there fore the post will need to ou
                             // console.log(location.id)
                         }
                     }>
-                    <option>Pick One</option>
+                    <option value={0}>Pick One</option>
                     {locations.map(
                         (location) => {
                             return <option
