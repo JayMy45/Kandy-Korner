@@ -28,11 +28,11 @@ This is how the data is stored on the server there fore the post will need to ou
 
          ~ Database Structure (Employee)
  ?                  "id": 1, (will be updated by JSON.server no need to include in final output)
-                    "email": "string",
-                    "startDate": "string",
-                    "rate": integer,
-                    "userId": integer,
-                    "locationId": integer
+                    email: "string",
+                    startDate: "string",
+                    rate: integer,
+                    userId: integer,
+                    locationId: integer
 
       
                         *final output
@@ -55,12 +55,17 @@ This is how the data is stored on the server there fore the post will need to ou
 
     })
 
+    //! State for updated NewHire data 
+    const [updatedHire, setUpdateHire] = useState({})
+
+
+    // ~ variable to facilitate navigating different routes.
     const navigate = useNavigate()
 
     //! state for locations 
     const [locations, setLocations] = useState([])
 
-    //& need useEffect to access locations.
+    //& need useEffect to access locations.  Sets location with database info fetched.
     //useEffects are used to observe state...
     useEffect(
         () => {
@@ -73,54 +78,55 @@ This is how the data is stored on the server there fore the post will need to ou
         []
     )
 
+
+    //POST newHire information from user inputs in form to database.json
     const createNewHireUser = (event) => {
         event.preventDefault()
 
-        const toBeSavedToAPI = {
+        const newHireUserDatabase = {
             fullName: newHire.name,
             email: newHire.email,
             isStaff: true
         }
-        return fetch(`http://localhost:8088/users`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(toBeSavedToAPI)
-        })
-            .then(response => response.json())
-            .then(() => {
-            })
-    }
 
-    const createNewHireEmployee = (event) => {
-        event.preventDefault()
-
-        const toBeSavedToAPI = {
-
+        const newHireEmployeeDatabase = {
             email: newHire.email,
             startDate: newHire.startDate,
-            rate: parseFloat(newHire.payRate),
-            userId: 0,
-            locationId: 1
+            rate: parseInt(newHire.payRate),
+            //userId: integer will be updated in post after newHireUserDatabase push has new id.
+            locationId: parseInt(newHire.location)
         }
-        return fetch(`http://localhost:8088/employees`, {
+
+
+        fetch(`http://localhost:8088/users`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(toBeSavedToAPI)
+            body: JSON.stringify(newHireUserDatabase)
         })
             .then(response => response.json())
-            .then(() => {
-            })
+            .then((newHireObject) => {
+                //update updatedHire State...
+                newHireEmployeeDatabase.userId = newHireObject.id
+
+                fetch(`http://localhost:8088/employees`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newHireEmployeeDatabase)
+                })
+                    .then(response => response.json())
+                    .then((newHireUpdate) => {
+                        navigate("/employees")
+                    }
+                    )
+            }
+            )
     }
 
-    const newHireCreation = (event) => {
-        createNewHireUser(event)
-        // createNewHireEmployee(event)
-        navigate("./employees")
-    }
+
 
     return (
         <form className="employee__new-hire">
@@ -170,7 +176,6 @@ This is how the data is stored on the server there fore the post will need to ou
                             const copy = { ...newHire }
                             copy.location = evt.target.value
                             setNewHire(copy)
-                            // console.log(location.id)
                         }
                     }>
                     <option value={0}>Pick One</option>
@@ -220,7 +225,7 @@ This is how the data is stored on the server there fore the post will need to ou
                 </div>
             </fieldset>
 
-            <button className="btn_new-hire" onClick={(ClickEvent) => newHireCreation(ClickEvent)}> Submit New Hire</button>
+            <button className="btn_new-hire" onClick={(ClickEvent) => createNewHireUser(ClickEvent)}> Submit New Hire</button>
         </form >
     )
 }
