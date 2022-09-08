@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Employees } from "./Employees"
 import "./Employee.css"
 
 export const EmployeeList = () => {
 
 
     const [employees, setEmployees] = useState([])
+    const navigate = useNavigate()
+
 
     useEffect(
         () => {
@@ -17,18 +21,20 @@ export const EmployeeList = () => {
         []
     )
 
-    return <article className="employees">
-        <h2>Employees</h2>
+    return <>
         {
-            employees.map(employee => {
-                return <section className="employee" key={`employee--${employee.id}`}>
-                    <div><strong>name:</strong> {employee.user.fullName}</div>
-                    <div><strong>email:</strong> {employee.email}</div>
-                    <div><strong>start Date:</strong> {(new Date(employee.startDate).toLocaleDateString("en-US"))}</div>
-                </section>
-            })
+            <button className="btn__create" onClick={() => navigate("/employees/create")}>Create New Hire</button>
         }
+        <article className="employees">
 
-    </article>
+            {
+                employees.map(employee => <Employees key={`employee--${employee.id}`}
+                    id={employee.id}
+                    fullName={employee.user.fullName}
+                    email={employee.email}
+                    startDate={employee.startDate} />)
+            }
 
+        </article>
+    </>
 }
