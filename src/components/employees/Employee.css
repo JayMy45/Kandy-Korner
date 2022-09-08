@@ -24,5 +24,8 @@ button {
 
 .dropdown {
     padding: 10%;
+}
 
+.employee__fullName {
+    font-size: large;
 }
