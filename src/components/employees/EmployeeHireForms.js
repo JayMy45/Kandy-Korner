@@ -1,5 +1,6 @@
 //export function to set state useEffects to get data and update state also create form JSX
 import { useEffect, useState } from "react"
+import { Navigate } from "react-router-dom"
 
 
 export const EmployeeHireForms = () => {
@@ -16,16 +17,22 @@ export const EmployeeHireForms = () => {
 
   */
 
-    const [locations, setLocations] = useState([])
+
+
+    //! State for New Hires
     const [newHire, setNewHire] = useState({
         name: "",
         location: "", //will parse once sent
+        email: "",
         startDate: "",
         payRate: "",
 
     })
 
 
+
+    //! state for locations 
+    const [locations, setLocations] = useState([])
 
     //& need useEffect to access locations.
     //useEffects are used to observe state...
@@ -40,8 +47,55 @@ export const EmployeeHireForms = () => {
         []
     )
 
-    // console.log(locations)
+    // const createNewHireUser = (event) => {
+    //     event.preventDefault()
 
+    //     const toBeSavedToAPI = {
+    //         fullName: newHire.name,
+    //         "email": "dustinrodriguez88@gmail.com",
+    //         "isStaff": true
+    //     }
+    //     return fetch(`http://localhost:8088/users`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(toBeSavedToAPI)
+    //     })
+    //         .then(reponse => respone.json())
+    //         .then(() => {
+    //             Navigate("/employee")
+    //         })
+    // }
+
+    // const createNewHireEmployee = (event) => {
+    //     event.preventDefault()
+
+    //     const toBeSavedToAPI = {
+
+    //         "email": "dustinrodriguez88@gmail.com",
+    //         "startDate": "July 4, 2020",
+    //         "rate": 19.5,
+    //         "userId": 1,
+    //         "locationId": 1
+    //     }
+    //     return fetch(`http://localhost:8088/employees`, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(toBeSavedToAPI)
+    //     })
+    //         .then(reponse => respone.json())
+    //         .then(() => {
+    //             Navigate("/employee")
+    //         })
+    // }
+
+    // const newHireCreation = (event) => {
+    //     createNewHireUser(event)
+    //     createNewHireEmployee(event)
+    // }
 
     return (
         <form className="employee__new-hire">
@@ -54,9 +108,32 @@ export const EmployeeHireForms = () => {
                         required autoFocus
                         type="text"
                         className="form-control"
-                        placeholder="Enter Name of Kandy"
-                        value="{product.name.CHANGE}"
-                        onChange={() => { }} />
+                        placeholder="Enter Full Name"
+                        value={newHire.name}
+                        onChange={(evt) => {
+                            const copy = { ...newHire }
+                            copy.name = evt.target.value
+                            setNewHire(copy)
+                        }
+                        } />
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="description">Email:</label>
+                    <input
+                        required autoFocus
+                        type="email"
+                        className="form-control"
+                        placeholder="Enter Email Address"
+                        value={newHire.email}
+                        onChange={(evt) => {
+                            const copy = { ...newHire }
+                            copy.email = evt.target.value
+                            setNewHire(copy)
+                        }
+                        } />
                 </div>
             </fieldset>
 
@@ -72,7 +149,12 @@ export const EmployeeHireForms = () => {
                                 value={location.id}
                                 key={`location--${location.id}`}
                                 onChange={
-                                    () => { }
+                                    (evt) => {
+                                        const copy = { ...newHire }
+                                        copy.location = evt.target.value
+                                        setNewHire(copy)
+                                        console.log(location.id)
+                                    }
                                 }>{location.name}</option>
                         }
                     )}
@@ -86,8 +168,12 @@ export const EmployeeHireForms = () => {
                         required autoFocus
                         type="date"
                         className="form-control"
-                        value="{product.date.CHANGE}"
-                        onChange={() => { }} />
+                        value={newHire.startDate}
+                        onChange={(evt) => {
+                            const copy = { ...newHire }
+                            copy.startDate = evt.target.value
+                            setNewHire(copy)
+                        }} />
                 </div>
             </fieldset>
 
@@ -99,12 +185,18 @@ export const EmployeeHireForms = () => {
                         type="number"
                         className="form-control"
                         placeholder="Hourly Rate"
-                        value="{product.price.CHANGE}"
-                        onChange={() => { }} />
+                        value={newHire.payRate}
+                        onChange={(evt) => {
+                            const copy = { ...newHire }
+                            copy.payRate = evt.target.value
+                            setNewHire(copy)
+                        }} />
                 </div>
             </fieldset>
 
-            <button className="btn_new-hire">Submit New Hire</button>
-        </form>
+            <button className="btn_new-hire" > Submit New Hire</button>
+        </form >
     )
 }
+
+// onClick={(ClickEvent) => newHireCreation(ClickEvent)}
