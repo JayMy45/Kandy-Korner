@@ -8,12 +8,38 @@ export const EmployeeHireForms = () => {
     /*
       TODO: Add the correct default properties to the
       initial state object
+    ----
+    COLOR GUIDE
+    & pink
+    ! red
+    ? blue
+    * neonGreen
+    ~ purple
+    TODO orange
+      -----
 
-                          *final output
-                "name":     string,
-                location:   integer (foreign key),
-                start date: date,
-                payRate:    integer
+This is how the data is stored on the server there fore the post will need to output the same information
+
+         ~ Database Structure (User)
+?                   id: 1, (will be updated by JSON.server no need to include in final output)
+                    fullName: "string",
+                    email: "string",
+                    isStaff: Boolean
+
+         ~ Database Structure (Employee)
+ ?                  "id": 1, (will be updated by JSON.server no need to include in final output)
+                    "email": "string",
+                    "startDate": "string",
+                    "rate": integer,
+                    "userId": integer,
+                    "locationId": integer
+                    
+      
+            *final output
+        "name":     string,
+        location:   integer (foreign key),
+        start date: date,
+        payRate:    integer
 
   */
 
@@ -75,7 +101,7 @@ export const EmployeeHireForms = () => {
             email: newHire.email,
             startDate: newHire.startDate,
             rate: parseFloat(newHire.payRate),
-            userId: parseInt(newHire.id),
+            userId: 0,
             locationId: 1
         }
         return fetch(`http://localhost:8088/employees`, {
@@ -138,7 +164,15 @@ export const EmployeeHireForms = () => {
 
             <fieldset>
                 <div><h3>Choose a Location: </h3></div>
-                <select className="form-group">
+                <select className="form-group"
+                    onChange={
+                        (evt) => {
+                            const copy = { ...newHire }
+                            copy.location = evt.target.value
+                            setNewHire(copy)
+                            // console.log(location.id)
+                        }
+                    }>
                     <option>Pick One</option>
                     {locations.map(
                         (location) => {
@@ -147,14 +181,7 @@ export const EmployeeHireForms = () => {
                                 className="form-control dropdown"
                                 value={location.id}
                                 key={`location--${location.id}`}
-                                onChange={
-                                    (evt) => {
-                                        const copy = { ...newHire }
-                                        copy.location = evt.target.value
-                                        setNewHire(copy)
-                                        console.log(location.id)
-                                    }
-                                }>{location.name}</option>
+                            >{location.name}</option>
                         }
                     )}
                 </select>
