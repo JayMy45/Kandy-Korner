@@ -1,6 +1,6 @@
 //export function to set state useEffects to get data and update state also create form JSX
 import { useEffect, useState } from "react"
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 export const EmployeeHireForms = () => {
@@ -29,7 +29,7 @@ export const EmployeeHireForms = () => {
 
     })
 
-
+    const navigate = useNavigate()
 
     //! state for locations 
     const [locations, setLocations] = useState([])
@@ -47,55 +47,54 @@ export const EmployeeHireForms = () => {
         []
     )
 
-    // const createNewHireUser = (event) => {
-    //     event.preventDefault()
+    const createNewHireUser = (event) => {
+        event.preventDefault()
 
-    //     const toBeSavedToAPI = {
-    //         fullName: newHire.name,
-    //         "email": "dustinrodriguez88@gmail.com",
-    //         "isStaff": true
-    //     }
-    //     return fetch(`http://localhost:8088/users`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(toBeSavedToAPI)
-    //     })
-    //         .then(reponse => respone.json())
-    //         .then(() => {
-    //             Navigate("/employee")
-    //         })
-    // }
+        const toBeSavedToAPI = {
+            fullName: newHire.name,
+            email: newHire.email,
+            isStaff: true
+        }
+        return fetch(`http://localhost:8088/users`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(toBeSavedToAPI)
+        })
+            .then(response => response.json())
+            .then(() => {
+            })
+    }
 
-    // const createNewHireEmployee = (event) => {
-    //     event.preventDefault()
+    const createNewHireEmployee = (event) => {
+        event.preventDefault()
 
-    //     const toBeSavedToAPI = {
+        const toBeSavedToAPI = {
 
-    //         "email": "dustinrodriguez88@gmail.com",
-    //         "startDate": "July 4, 2020",
-    //         "rate": 19.5,
-    //         "userId": 1,
-    //         "locationId": 1
-    //     }
-    //     return fetch(`http://localhost:8088/employees`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(toBeSavedToAPI)
-    //     })
-    //         .then(reponse => respone.json())
-    //         .then(() => {
-    //             Navigate("/employee")
-    //         })
-    // }
+            email: newHire.email,
+            startDate: newHire.startDate,
+            rate: parseFloat(newHire.payRate),
+            userId: parseInt(newHire.id),
+            locationId: 1
+        }
+        return fetch(`http://localhost:8088/employees`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(toBeSavedToAPI)
+        })
+            .then(response => response.json())
+            .then(() => {
+            })
+    }
 
-    // const newHireCreation = (event) => {
-    //     createNewHireUser(event)
-    //     createNewHireEmployee(event)
-    // }
+    const newHireCreation = (event) => {
+        createNewHireUser(event)
+        // createNewHireEmployee(event)
+        navigate("./employees")
+    }
 
     return (
         <form className="employee__new-hire">
@@ -194,9 +193,8 @@ export const EmployeeHireForms = () => {
                 </div>
             </fieldset>
 
-            <button className="btn_new-hire" > Submit New Hire</button>
+            <button className="btn_new-hire" onClick={(ClickEvent) => newHireCreation(ClickEvent)}> Submit New Hire</button>
         </form >
     )
 }
 
-// onClick={(ClickEvent) => newHireCreation(ClickEvent)}
