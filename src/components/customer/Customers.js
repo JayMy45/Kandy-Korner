@@ -12,7 +12,7 @@ export const Customers = ({ name, email, id }) => {
 
             <section className="customer" key={`customer--${id}`}>
                 <div className="customer__fullName">
-                    <Link to={`/customer/${id}`}>{name}</Link>
+                    <Link to={`/customers/${id}`}>{name}</Link>
                 </div>
                 <div><strong>Email: </strong>{email}</div>
             </section>
