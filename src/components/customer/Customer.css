@@ -30,3 +30,19 @@ button {
 .customer__fullName {
     font-size: large;
 }
+
+.customer__details {
+    font-size: large;
+    padding: 1rem 4rem 2rem 4rem;
+    border: 1px solid red;
+    margin-top: 10%;
+    width: 30rem;
+    text-align: center;
+
+}
+
+.customer__details--header {
+    font-size: xx-large;
+    margin: 5px;
+
+}

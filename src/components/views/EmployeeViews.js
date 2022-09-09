@@ -1,4 +1,5 @@
 import { Outlet, Route, Routes } from "react-router-dom"
+import { CustomerDetails } from "../customer/CustomerDetails"
 import { CustomerList } from "../customer/CustomerList"
 import { EmployeeHireForms } from "../employees/EmployeeHireForms"
 import { EmployeeList } from "../employees/EmployeeList"
@@ -32,6 +33,7 @@ export const EmployeeViews = () => {
                 <Route path="/employees" element={<EmployeeList />} />
                 <Route path="/employees/create" element={<EmployeeHireForms />} />
                 <Route path="/customers" element={<CustomerList />} />
+                <Route path="/customers/:customerId" element={<CustomerDetails />} />
 
 
             </Route>
@@ -39,3 +41,5 @@ export const EmployeeViews = () => {
     )
 
 }
+
+//customerId is a parameter (this is how parameters are defined in react.js within links) that will be used whenever a customerId (defined in CustomerDetails.js) is clicked...
