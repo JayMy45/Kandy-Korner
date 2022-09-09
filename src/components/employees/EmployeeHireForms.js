@@ -48,10 +48,10 @@ This is how the data is stored on the server there fore the post will need to ou
     //! State for New Hires
     const [newHire, setNewHire] = useState({
         name: "",
-        location: "", //will parse once sent
+        location: 0, //will parse once sent
         email: "",
-        startDate: "",
-        payRate: "",
+        startDate: 0,
+        payRate: 0,
 
     })
 
@@ -92,7 +92,7 @@ This is how the data is stored on the server there fore the post will need to ou
         const newHireEmployeeDatabase = {
             email: newHire.email,
             startDate: newHire.startDate,
-            rate: parseInt(newHire.payRate),
+            rate: parseFloat(parseFloat(newHire.payRate).toFixed(2)),
             //userId: integer will be updated in post after newHireUserDatabase push has new id.
             locationId: parseInt(newHire.location)
         }
@@ -194,7 +194,7 @@ This is how the data is stored on the server there fore the post will need to ou
 
             <fieldset>
                 <div className="form-group">
-                    <label htmlFor="employee__start_date">Start Date:</label>
+                    <label htmlFor="employee__start_date">Start Date: </label>
                     <input
                         required autoFocus
                         type="date"
