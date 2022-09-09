@@ -1,6 +1,6 @@
 //export function to set state useEffects to get data and update state also create form JSX
 import { useEffect, useState } from "react"
-import { Navigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 
 export const EmployeeHireForms = () => {
@@ -8,12 +8,38 @@ export const EmployeeHireForms = () => {
     /*
       TODO: Add the correct default properties to the
       initial state object
+    ----
+    COLOR GUIDE
+    & pink
+    ! red
+    ? blue
+    * neonGreen
+    ~ purple
+    TODO orange
+      -----
 
-                          *final output
-                "name":     string,
-                location:   integer (foreign key),
-                start date: date,
-                payRate:    integer
+This is how the data is stored on the server there fore the post will need to output the same information
+* need the updated id from User database structure POST'd first before Employee POST can have an updated userID
+         ~ Database Structure (User)
+?                   id: 1, (will be updated by JSON.server no need to include in final output)
+                    fullName: "string",
+                    email: "string",
+                    isStaff: Boolean
+
+         ~ Database Structure (Employee)
+ ?                  "id": 1, (will be updated by JSON.server no need to include in final output)
+                    email: "string",
+                    startDate: "string",
+                    rate: integer,
+                    userId: integer,
+                    locationId: integer
+
+      
+                        *final output
+                    "name":     string,
+                    location:   integer (foreign key),
+                    start date: date,
+                    payRate:    integer
 
   */
 
@@ -29,12 +55,17 @@ export const EmployeeHireForms = () => {
 
     })
 
+    //! State for updated NewHire data 
+    const [updatedHire, setUpdateHire] = useState({})
 
+
+    // ~ variable to facilitate navigating different routes.
+    const navigate = useNavigate()
 
     //! state for locations 
     const [locations, setLocations] = useState([])
 
-    //& need useEffect to access locations.
+    //& need useEffect to access locations.  Sets location with database info fetched.
     //useEffects are used to observe state...
     useEffect(
         () => {
@@ -47,55 +78,55 @@ export const EmployeeHireForms = () => {
         []
     )
 
-    // const createNewHireUser = (event) => {
-    //     event.preventDefault()
 
-    //     const toBeSavedToAPI = {
-    //         fullName: newHire.name,
-    //         "email": "dustinrodriguez88@gmail.com",
-    //         "isStaff": true
-    //     }
-    //     return fetch(`http://localhost:8088/users`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(toBeSavedToAPI)
-    //     })
-    //         .then(reponse => respone.json())
-    //         .then(() => {
-    //             Navigate("/employee")
-    //         })
-    // }
+    //POST newHire information from user inputs in form to database.json
+    const createNewHireUser = (event) => {
+        event.preventDefault()
 
-    // const createNewHireEmployee = (event) => {
-    //     event.preventDefault()
+        const newHireUserDatabase = {
+            fullName: newHire.name,
+            email: newHire.email,
+            isStaff: true
+        }
 
-    //     const toBeSavedToAPI = {
+        const newHireEmployeeDatabase = {
+            email: newHire.email,
+            startDate: newHire.startDate,
+            rate: parseInt(newHire.payRate),
+            //userId: integer will be updated in post after newHireUserDatabase push has new id.
+            locationId: parseInt(newHire.location)
+        }
 
-    //         "email": "dustinrodriguez88@gmail.com",
-    //         "startDate": "July 4, 2020",
-    //         "rate": 19.5,
-    //         "userId": 1,
-    //         "locationId": 1
-    //     }
-    //     return fetch(`http://localhost:8088/employees`, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify(toBeSavedToAPI)
-    //     })
-    //         .then(reponse => respone.json())
-    //         .then(() => {
-    //             Navigate("/employee")
-    //         })
-    // }
 
-    // const newHireCreation = (event) => {
-    //     createNewHireUser(event)
-    //     createNewHireEmployee(event)
-    // }
+        fetch(`http://localhost:8088/users`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newHireUserDatabase)
+        })
+            .then(response => response.json())
+            .then((newHireObject) => {
+                //update updatedHire State...
+                newHireEmployeeDatabase.userId = newHireObject.id
+
+                fetch(`http://localhost:8088/employees`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(newHireEmployeeDatabase)
+                })
+                    .then(response => response.json())
+                    .then((newHireUpdate) => {
+                        navigate("/employees")
+                    }
+                    )
+            }
+            )
+    }
+
+
 
     return (
         <form className="employee__new-hire">
@@ -139,8 +170,15 @@ export const EmployeeHireForms = () => {
 
             <fieldset>
                 <div><h3>Choose a Location: </h3></div>
-                <select className="form-group">
-                    <option>Pick One</option>
+                <select className="form-group"
+                    onChange={
+                        (evt) => {
+                            const copy = { ...newHire }
+                            copy.location = evt.target.value
+                            setNewHire(copy)
+                        }
+                    }>
+                    <option value={0}>Pick One</option>
                     {locations.map(
                         (location) => {
                             return <option
@@ -148,14 +186,7 @@ export const EmployeeHireForms = () => {
                                 className="form-control dropdown"
                                 value={location.id}
                                 key={`location--${location.id}`}
-                                onChange={
-                                    (evt) => {
-                                        const copy = { ...newHire }
-                                        copy.location = evt.target.value
-                                        setNewHire(copy)
-                                        console.log(location.id)
-                                    }
-                                }>{location.name}</option>
+                            >{location.name}</option>
                         }
                     )}
                 </select>
@@ -194,9 +225,8 @@ export const EmployeeHireForms = () => {
                 </div>
             </fieldset>
 
-            <button className="btn_new-hire" > Submit New Hire</button>
+            <button className="btn_new-hire" onClick={(ClickEvent) => createNewHireUser(ClickEvent)}> Submit New Hire</button>
         </form >
     )
 }
 
-// onClick={(ClickEvent) => newHireCreation(ClickEvent)}
