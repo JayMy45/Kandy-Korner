@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const CustomerLists = ({ searchTermState }) => {
+export const ProductCustomerLists = ({ searchTermState }) => {
 
 
     //set initial state to empty array

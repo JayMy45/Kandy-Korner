@@ -1,0 +1,32 @@
+.customers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.customer {
+    border: 2px solid rgb(60, 55, 55);
+    margin: 1rem;
+    padding: .5rem;
+    background-color: rgba(138, 138, 110, 0.69);
+    border-radius: 10px;
+    width: 75%;
+    color: white;
+}
+
+button {
+    margin-top: 4%;
+}
+
+.btn__create:hover,
+.btn_new-hire:hover {
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+.dropdown {
+    padding: 10%;
+}
+
+.customer__fullName {
+    font-size: large;
+}
