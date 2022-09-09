@@ -4,18 +4,17 @@ import { Link } from "react-router-dom"
 
 //declare export function to return jsx code.
 //parameter are the props (aka properties) deconstructed into object. From EmployeeList.js 
-export const Customer = ({ fullName, id, email, startDate }) => {
+export const Customers = ({ name, email, id }) => {
     //return form structure for Employees to be displayed
     return <>
 
         {
 
-            <section className="employee" key={`employee--${id}`}>
-                <div className="employee__fullName">
-                    <Link to={`/employees/${id}`}>{fullName}</Link>
+            <section className="customer" key={`customer--${id}`}>
+                <div className="customer__fullName">
+                    <Link to={`/customer/${id}`}>{name}</Link>
                 </div>
-                <div><strong>Email:</strong> {email}</div>
-                <div><strong>Start Date: </strong>{startDate}</div>
+                <div><strong>Email: </strong>{email}</div>
             </section>
 
         }
