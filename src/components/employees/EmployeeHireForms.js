@@ -118,7 +118,7 @@ This is how the data is stored on the server there fore the post will need to ou
                     body: JSON.stringify(newHireEmployeeDatabase)
                 })
                     .then(response => response.json())
-                    .then((newHireUpdate) => {
+                    .then(() => {
                         navigate("/employees")
                     }
                     )
