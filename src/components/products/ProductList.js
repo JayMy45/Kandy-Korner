@@ -34,7 +34,6 @@ export const ProductList = ({ searchTermState }) => {
         [searchTermState]
     )
 
-
     //& topPrice setFilteredProducts to filtered amount (less than 3) or to product array if condition met.
     useEffect(
         () => {
@@ -48,7 +47,6 @@ export const ProductList = ({ searchTermState }) => {
         },
         [topPrice]
     )
-
 
     //& Fetch -PRODUCTS information
     useEffect(

@@ -7,7 +7,6 @@ export const ProductCustomerLists = ({ searchTermState }) => {
     const [products, setProducts] = useState([])
     const [filteredProducts, setFilteredProducts] = useState([])
 
-
     //observe initial state and display jsx code below whenever input field is not empty
     useEffect(
         () => {
@@ -41,8 +40,6 @@ export const ProductCustomerLists = ({ searchTermState }) => {
         },
         [products]
     )
-
-
 
     return <article className="products">
         <h2>LIST OF PRODUCTS</h2>

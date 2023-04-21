@@ -1,7 +1,4 @@
-//export a function that creates a  search field (input field) so Customers can find candy by name...
-//update applicationView to route here (ProductSearch.js) for input field.
 import "./Products.css"
-
 
 export const ProductSearch = ({ setterFunction }) => {
     return (  //has to be parenthesis and not fragment to around input to render on page...
@@ -17,4 +14,4 @@ export const ProductSearch = ({ setterFunction }) => {
                 type="text" placeholder="What candy are you looking for?" className="kandyKorner__search" />
         </div>
     )
-}
+} 
