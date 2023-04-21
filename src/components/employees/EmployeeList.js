@@ -34,7 +34,6 @@ export const EmployeeList = () => {
                     email={employee.email}
                     startDate={employee.startDate} />)
             }
-
         </article>
     </>
 }
