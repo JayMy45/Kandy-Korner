@@ -43,8 +43,6 @@ This is how the data is stored on the server there fore the post will need to ou
 
   */
 
-
-
     //! State for New Hires
     const [newHire, setNewHire] = useState({
         name: "",
@@ -125,8 +123,6 @@ This is how the data is stored on the server there fore the post will need to ou
             }
             )
     }
-
-
 
     return (
         <form className="employee__new-hire">
@@ -229,4 +225,3 @@ This is how the data is stored on the server there fore the post will need to ou
         </form >
     )
 }
-

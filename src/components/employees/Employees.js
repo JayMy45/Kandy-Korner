@@ -7,7 +7,6 @@ import { Link } from "react-router-dom"
 export const Employees = ({ fullName, id, email, startDate }) => {
     //return form structure for Employees to be displayed
     return <>
-
         {
 
             <section className="employee" key={`employee--${id}`}>

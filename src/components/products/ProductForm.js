@@ -33,7 +33,6 @@ export const TicketEdit = () => {
             })
     }
 
-
     return <form className="ticketForm">
         <h2 className="ticketForm__title">Service Ticket</h2>
         <fieldset>

@@ -17,8 +17,6 @@ export const LocationList = () => {
 
     const [locations, setLocations] = useState([])     // set initial state to empty
 
-
-
     //& LOCATIONS
     useEffect(
         () => {
@@ -52,7 +50,3 @@ export const LocationList = () => {
         }
     </>
 }
-
-//reroute locations to webpage...?
-
-//added key identifier to locations.map()
