@@ -44,15 +44,20 @@ export const ProductCustomerLists = ({ searchTermState }) => {
     return <article className="products">
         <h2>LIST OF PRODUCTS</h2>
         {
-            filteredProducts.map(
-                (product) => {
-                    return <section className="product" key={`product--${product.id}`}>
-                        <header><strong>Name:</strong> {product.name}</header>
-                        <footer><strong>Price:</strong> {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</footer>
+            filteredProducts.length < products.length
 
-                    </section>
-                }
-            )
+                ? filteredProducts.map(
+                    (product) => {
+                        return <section className="product" key={`product--${product.id}`}>
+                            <header><strong>Name:</strong> {product.name}</header>
+                            <footer><strong>Price:</strong> {product.price.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</footer>
+
+                        </section>
+                    }
+                )
+
+                : <></>
         }
+
     </article >
 }

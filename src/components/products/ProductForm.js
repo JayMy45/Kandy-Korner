@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 
-export const TicketEdit = () => {
+export const ProductForm = () => {
     const [ticket, assignTicket] = useState({
         description: "",
         emergency: false
