@@ -26,3 +26,29 @@ button {
     margin-top: 1rem;
     width: 20rem;
 }
+
+.search {
+    border: 2px solid black;
+    width: 75%;
+    padding: 1rem;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: beige;
+}
+
+.searchbox {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 2rem;
+}
+
+input {
+    padding: 0.4rem;
+    border-color: blue;
+}
+
+.searchinput {
+    margin: auto;
+    padding: 1rem;
+}
