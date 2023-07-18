@@ -29,7 +29,7 @@ button {
 
 .search {
     border: 2px solid black;
-    width: 75%;
+    width: 25rem;
     padding: 1rem;
     margin: auto;
     display: flex;
